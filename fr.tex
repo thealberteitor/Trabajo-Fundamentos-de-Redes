@@ -8,7 +8,7 @@
 	\normalfont \normalsize 
 	\textsc{\textbf{Fundamentos de Redes (2017-2018)} \\ Doble Grado en Ingeniería Informática y Matemáticas \\ Universidad de Granada} \\ [25pt] 
 	\horrule{0.5pt} \\[0.4cm]
-	\huge TÍTULO DEL TRABAJO \\ 
+	\huge Invisible Internet Project (I2P) \\ 
 	\horrule{2pt} \\[0.5cm] 
 }
 
@@ -20,16 +20,65 @@
 %----------------------------------------------------------------------------------------
 
 \begin{document}
-	\maketitle 
-	
+	\maketitle       % título
 	\newpage 
-	
 	\tableofcontents % indice
-	
-	% \listoffigures
-	
-	% \listoftables
-	
 	\newpage
+	
+	\section{Motivación} %% poner que empiece en 0
+	El incremento en el uso cotidiano de las nuevas tecnologías conlleva una serie de riesgos ocultos a la mayoría de los usuarios, que normalmente no son conscientes de los mismos, sino que se centran en su uso sin preocuparse de otros factores.\\
+	
+	Es por esto que vemos de vital importancia poner de manifiesto los puntos negativos que afectan a los usuarios de internet, sobre todo en cuanto a privacidad se refiere. Este problema en particular es preocupante, pues cada vez que nos conectamos a la red cedemos una gran cantidad de datos que en manos equivocadas puede suponer un grave peligro para nosotros.\\
+	
+	Afortunadamente, existen diversos métodos que, en mayor o menor medida nos ayudan a prevenir esta cesión indiscriminada de datos, sin privarnos de la facilidad y comodidad del uso corriente de Internet. En este trabajo nos centraremos en un software en particular, llamado \textbf{Invisible Internet Project (I2P)}. Sin embargo, antes explicaremos con un poco más de detalle los riesgos concretos en un acceso corriente a Internet, así como otros métodos menos sofisticados para protegernos.
+	
+	\section{Anonimato en el acceso corriente a Internet}
+	%%%% arreglar ¿
+	¿Alguna vez te has planteado qué ocurre cuando abres el navegador y te conectas a una web de Internet? En teoría es un proceso sencillo de cara al usuario, algo que hacemos de forma casi automática. Sin embargo, lo que en realidad ocurre en las capas interiores es un proceso complejo si no se tienen conocimientos suficientes.\\
+	
+	%%% arreglar ¿
+	¿Qué ocurre cuando cuando nos conectamos a una red? Para ilustrar el proceso de conexión, podemos pensar en una plaza o un parque de una ciudad, y personas entrando y saliendo del mismo. Podemos pensar que al conectarnos a Internet realizamos un proceso análogo a entrar en la plaza, pues podemos ver que hay otros usuarios conectados, y relacionarnos con ellos si así lo queremos. Pero no es exactamente lo mismo, pues en el primer caso somos conscientes de los riesgos que conlleva entrar al parque, y solo compartimos la información que nosotros queremos en cada momento. En Internet, automáticamente estamos cediendo una gran cantidad de información, como si fueramos al parque con el DNI en alto, y cualquier persona podría, desde la distancia, saber a qué se dedica una persona, por qué ha venido al parque, su dirección, etc.\\
+	
+	Uno de los mayores problemas es la huella digital que dejamos inconscientemente al realizar cualquier conexión. Se trata de nuestra \textit{dirección IP}, la cual es fácilmente detectable y nos identifica de forma unívoca en Internet. Además, es posible \textbf{geolocalizar} el dispositivo desde el cual se está accediendo, simplemente con saber la dirección IP (por ejemplo, en \url{https://whatismyipaddress.com/}).\\
+	
+	Existen otros problemas derivados, como el envío del historial de búsqueda, cookies de rastreo, y otra información almacenada en nuestro navegador que nos puede identificar de forma única.
+	
+	Es por esto que surge la necesidad de ocultar nuestra dirección IP en Internet, y nuestro rastro en general. Para ello, existen diferentes alternativas:
+	
+\begin{itemize}
+\item \textbf{Proxy:} Se trata de un servidor intermediario entre las conexiones de un cliente y un servidor, centrado en la navegación. De esta manera, al visitar una página web se puede enviar y recibir información a través de un proxy, y así ocultar nuestra dirección IP a la página de destino, que verá la IP del proxy. Puede utilizarse para acceder a contenido bloqueado en algunos países, como medio de evitar la censura.
+\item \textbf{VPN:} Es un acrónimo para \textit{Virtual Private Network}, red privada virtual. Se trata de un medio de extender una red privada a través de una red pública, de forma que simula que un usuario conectado a través de VPN forme parte físicamente de la red privada. Esto proporciona diversas ventajas:
+
+\begin{itemize}
+	\item Se puede acceder remotamente a los recursos de la red privada como si se formase parte de ella.
+	\item Se camufla la dirección IP, pues la dirección que se ve es aquella que proporciona la red virtual.
+	\item Se garantiza la confidencialidad, de forma que los paquetes intercambiados en la red están encriptados.
+	\item Existe un sistema de autentificación para conectarse a la red e impedir accesos no deseados.
+	\item También se proporcionan mecanismos para mantener la integridad de los mensajes y detectar mensajes fraudulentos.
+\end{itemize}	
+\item \textbf{Redes de anonimato.} Son el objetivo central de este trabajo, y las discutiremos posteriormente.
+\item \textbf{Otros.} Existen otros mecanismos, menos sofisticados pero muchas veces muy efectivos, como utilizar buscadores que respetan la privacidad (\url{https://duckduckgo.com/}).
+\end{itemize}
+
+\section{Invisible Internet Project. Estructura, funcionamiento y seguridad}
+
+I2P es una herramienta de \textbf{software libre} que ofrece una capa de red de abstracción para comunicaciones entre ordenadores, la cual permite a las aplicaciones que la utilizan transmitir mensajes de forma anónima y segura. Recordemos que una capa de red proporciona conectividad y selección de ruta entre dos sistemas de hosts que pueden estar ubicados en redes geográficamente distintas. Su misión es conseguir que los datos lleguen desde el origen al destino aunque no tengan conexión directa.\\
+
+En este caso, la selección de ruta o \textit{routing} que ofrece I2P se basa en una serie de nodos conectados a la misma red, que crean caminos temporales y unidireccionales (túneles), siguiendo la técnica de enrutamiento \textit{garlic}, que veremos a continuación.\\
+
+Además, todas las comunicaciones están encriptadas \textit{punto a punto}, lo que añade una capa extra de seguridad a nuestras aplicaciones.
+
+\subsection{Nodos y túneles. Algoritmo Kademlia}
+
+
+
+
+
+
+\subsection{Enrutamiento tipo \textit{garlic}}
+
+\subsection{Enmascaramiento de IP}
+
+\subsection{Encriptación de la información}
 
 \end{document}
