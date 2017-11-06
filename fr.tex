@@ -88,7 +88,7 @@ En esta técnica se construyen caminos, o túneles, a través de una serie de pa
 \begin{itemize}
 	\item Fase de construcción: cuando un mensaje se está transmitiendo en cada router (nodo), solamente se descifra la información correspondiente al siguiente router al que se le debe enviar el paquete.
 	\item 
-	Fase  operación: Los mensajes pasan a través del túnel y el mensaje y sus instrucciones son mostradas en el punto final de este. /*cambiar*/
+	Fase  operación: Los mensajes pasan a través del túnel y el mensaje y sus instrucciones son mostradas en el punto final de este.
 	
 	
 \end{itemize}	
@@ -97,11 +97,12 @@ En esta técnica se construyen caminos, o túneles, a través de una serie de pa
 
 
 \item \textbf{Agregación de múltiples mensajes juntos:}
-En “Onion Routing” los mensajes se encapsulan en capas de cifrado, a diferencia de “Garlic Routing” que encripta varios mensajes juntos para que el análisis de tráfico realizado por los atacantes resulte más difícil, así como para aumentar la velocidad de transferencia de datos.
+En \textit{Onion Routing} los mensajes se encapsulan en capas de cifrado, a diferencia de \textit{Garlic Routing} que encripta varios mensajes juntos para que el análisis de tráfico realizado por los atacantes resulte más difícil, así como para aumentar la velocidad de transferencia de datos.
 
 
 \item \textbf{Cifrado utilizando ElGamal/AES. :}
 Herramienta para cifrar la información que comentaremos más adelante.
+
 
 \end{itemize}
 
@@ -112,8 +113,26 @@ Herramienta para cifrar la información que comentaremos más adelante.
 
 \subsection{Encriptación de la información}
 
-Se trata del mecanismo empleado por cada uno de los routers en cada canal de comunicación para cifrar los paquetes que viajan entre cada uno de ellos, todos los mensajes son cifrados utilizando el algoritmo de cifrado “ElGamal” y posteriormente se utiliza “AES+SessionTag”.
+Se trata del mecanismo empleado por cada uno de los routers en cada canal de comunicación para cifrar los paquetes que viajan entre cada uno de ellos, todos los mensajes son cifrados utilizando el algoritmo de cifrado \textit{ElGamal} y posteriormente se utiliza \textit{AES+SessionTag}.
 
-/*acabar*/
+
+\begin{itemize}
+
+\item \textbf{ElGamal:}
+Algoritmo de criptografía asimétrica. Su funcionamiento se basa en cálculos sobre logaritmos discretos usando un número primo y dos enteros.   
+
+
+\item \textbf{AES. :}
+Es lo que se conoce como un cifrado simétrico por bloques, es decir, cifra y descifra los datos en bloques de 128 bits cada uno. Para ello utiliza una clave criptográfica específica que puede ser de 128,192 o 256 bits de tamaño. Dicha clave se especifica al nombrar el cifrado usado (AES-128, AES256...). Además, a cada bloque de texto se le aplica una operación XOR con el previo bloque ya cifrado, haciendo cada mensaje único con el uso de un vector de inicialización en el primer bloque. Esto es lo que se conoce como \textit{Cipher Block Chaining - CBC} 
+
+\textit{}
+
+\item \textbf{Algoritmo:} La primera vez que un router quiere cifrar un mensaje para otro otro router, ambos cifran las claves para una clave de sesión AES256 con \textit{ElGamal} y se adjuntan los bloques cifrados  AES-256-CBC.
+Además del bloque cifrado, se crean un número de \textit{SessionTag} (etiquetas de sesión) que pueden usarse si el remitente desea cifrar un \textit{mensaje Garlic} para otro router, es decir, se cifra con AES los bloques pero usando la clave de sesión usada con la etiqueta de sesión anterior. 
+Cabe destacar que cada etiqueta de sesión puede ser usada únicamente una vez para evitar vulnerabilidades y que tienen un ciclo de vida bastante corto.
+
+
+\end{itemize}
+
 
 \end{document}
