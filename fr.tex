@@ -77,8 +77,43 @@ Además, todas las comunicaciones están encriptadas \textit{punto a punto}, lo 
 
 \subsection{Enrutamiento tipo \textit{garlic}}
 
+En la tecnología I2P, es necesario comprender que significa el término Garlic. Este término se puede aplicar a 3 conceptos diferentes:
+
+\begin{itemize}
+\item \textbf{Cifrado por capas:}
+Permite que los datos enviados a un receptor no sean descifrados en cada enrutamiento que se lleva a cabo en los diferentes túneles. 
+En esta técnica se construyen caminos, o túneles, a través de una serie de pares (controles de entradas). Podemos distinguir dos fases:
+
+
+\begin{itemize}
+	\item Fase de construcción: cuando un mensaje se está transmitiendo en cada router (nodo), solamente se descifra la información correspondiente al siguiente router al que se le debe enviar el paquete.
+	\item 
+	Fase  operación: Los mensajes pasan a través del túnel y el mensaje y sus instrucciones son mostradas en el punto final de este. /*cambiar*/
+	
+	
+\end{itemize}	
+
+
+
+
+\item \textbf{Agregación de múltiples mensajes juntos:}
+En “Onion Routing” los mensajes se encapsulan en capas de cifrado, a diferencia de “Garlic Routing” que encripta varios mensajes juntos para que el análisis de tráfico realizado por los atacantes resulte más difícil, así como para aumentar la velocidad de transferencia de datos.
+
+
+\item \textbf{Cifrado utilizando ElGamal/AES. :}
+Herramienta para cifrar la información que comentaremos más adelante.
+
+\end{itemize}
+
+
+
+
 \subsection{Enmascaramiento de IP}
 
 \subsection{Encriptación de la información}
+
+Se trata del mecanismo empleado por cada uno de los routers en cada canal de comunicación para cifrar los paquetes que viajan entre cada uno de ellos, todos los mensajes son cifrados utilizando el algoritmo de cifrado “ElGamal” y posteriormente se utiliza “AES+SessionTag”.
+
+/*acabar*/
 
 \end{document}
