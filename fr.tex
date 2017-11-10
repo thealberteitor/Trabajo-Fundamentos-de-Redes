@@ -77,7 +77,7 @@ Además, todas las comunicaciones están encriptadas \textit{punto a punto}, lo 
 
 \subsection{Enrutamiento tipo \textit{garlic}}
 
-En la tecnología I2P, es necesario comprender que significa el término Garlic. Este término se puede aplicar a 3 conceptos diferentes:
+En la tecnología I2P, es necesario comprender qué significa el término Garlic. Este término se puede aplicar a 3 conceptos diferentes:
 
 \begin{itemize}
 \item \textbf{Cifrado por capas:}
@@ -101,7 +101,7 @@ En \textit{Onion Routing} los mensajes se encapsulan en capas de cifrado, a dife
 
 
 \item \textbf{Cifrado utilizando ElGamal/AES. :}
-Herramienta para cifrar la información que comentaremos más adelante.
+Herramienta para cifrar la información que usa I2P. Su funcionamiento se realizará más adelante.
 
 
 \end{itemize}
@@ -127,7 +127,7 @@ Es lo que se conoce como un cifrado simétrico por bloques, es decir, cifra y de
 
 \textit{}
 
-\item \textbf{Algoritmo:} La primera vez que un router quiere cifrar un mensaje para otro otro router, ambos cifran las claves para una clave de sesión AES256 con \textit{ElGamal} y se adjuntan los bloques cifrados  AES-256-CBC.
+\item \textbf{Algoritmo:} La primera vez que un router quiere cifrar un mensaje para otro router, ambos cifran las claves para una clave de sesión AES256 con \textit{ElGamal} y se adjuntan los bloques cifrados  AES-256-CBC.
 Además del bloque cifrado, se crean un número de \textit{SessionTag} (etiquetas de sesión) que pueden usarse si el remitente desea cifrar un \textit{mensaje Garlic} para otro router, es decir, se cifra con AES los bloques pero usando la clave de sesión usada con la etiqueta de sesión anterior. 
 Cabe destacar que cada etiqueta de sesión puede ser usada únicamente una vez para evitar vulnerabilidades y que tienen un ciclo de vida bastante corto.
 
