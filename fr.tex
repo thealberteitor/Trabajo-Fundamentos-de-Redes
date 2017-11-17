@@ -1,7 +1,7 @@
-\input{preambuloSimple.tex}
+\input{preambuloSimple.tex}  % Configuración del documento
 
 %----------------------------------------------------------------------------------------
-%	TÍTULO Y DATOS DEL ALUMNO
+%	TÍTULO Y DATOS DE LOS ALUMNOS
 %----------------------------------------------------------------------------------------
 
 \title{	
@@ -13,41 +13,55 @@
 }
 
 \author{Antonio Coín Castro \\ Alberto Jesús Durán López} 
-\date{\normalsize\today} % Incluye la fecha actual
+\date{\normalsize\today}
 
 %----------------------------------------------------------------------------------------
-% DOCUMENTO
+% DOCUMENTOg
 %----------------------------------------------------------------------------------------
 
 \begin{document}
 	\maketitle       % título
 	\newpage 
-	\tableofcontents % indice
+	\tableofcontents % índice
 	\newpage
 	
-	\section{Motivación} %% poner que empiece en 0
-	El incremento en el uso cotidiano de las nuevas tecnologías conlleva una serie de riesgos ocultos a la mayoría de los usuarios, que normalmente no son conscientes de los mismos, sino que se centran en su uso sin preocuparse de otros factores.\\
 	
-	Es por esto que vemos de vital importancia poner de manifiesto los puntos negativos que afectan a los usuarios de internet, sobre todo en cuanto a privacidad se refiere. Este problema en particular es preocupante, pues cada vez que nos conectamos a la red cedemos una gran cantidad de datos que en manos equivocadas puede suponer un grave peligro para nosotros.\\
 	
-	Afortunadamente, existen diversos métodos que, en mayor o menor medida nos ayudan a prevenir esta cesión indiscriminada de datos, sin privarnos de la facilidad y comodidad del uso corriente de Internet. En este trabajo nos centraremos en un software en particular, llamado \textbf{Invisible Internet Project (I2P)}. Sin embargo, antes explicaremos con un poco más de detalle los riesgos concretos en un acceso corriente a Internet, así como otros métodos menos sofisticados para protegernos.
+	
+	\section{Motivación}
+	
+	El incremento en el uso cotidiano de las nuevas tecnologías conlleva una serie de riesgos ocultos a la mayoría de los usuarios, que normalmente no son conscientes de los mismos, sino que se centran en el uso de las mismas sin preocuparse de otros factores.\\
+	
+	Es por esto que vemos de vital importancia poner de manifiesto los puntos negativos que afectan a los usuarios de Internet, sobre todo en cuanto a privacidad se refiere. Este problema en particular es preocupante, pues cada vez que nos conectamos a la red cedemos una gran cantidad de datos que en manos equivocadas pueden suponer un grave peligro para nosotros.\\
+	
+	Afortunadamente, existen diversos métodos que, en mayor o menor medida, nos ayudan a prevenir esta cesión indiscriminada de datos, sin privarnos de la facilidad y comodidad del uso corriente de Internet. En este trabajo nos centraremos en un software en particular, llamado \textbf{Invisible Internet Project (I2P)}, y también hablaremos en general sobre redes de anonimato. Sin embargo, antes explicaremos con un poco más de detalle los riesgos concretos en un acceso corriente a Internet, así como otros métodos menos sofisticados para protegernos.
+	
+	
+	
 	
 	\section{Anonimato en el acceso corriente a Internet}
-	%%%% arreglar ¿
-	¿Alguna vez te has planteado qué ocurre cuando abres el navegador y te conectas a una web de Internet? En teoría es un proceso sencillo de cara al usuario, algo que hacemos de forma casi automática. Sin embargo, lo que en realidad ocurre en las capas interiores es un proceso complejo si no se tienen conocimientos suficientes.\\
 	
-	%%% arreglar ¿
-	¿Qué ocurre cuando cuando nos conectamos a una red? Para ilustrar el proceso de conexión, podemos pensar en una plaza o un parque de una ciudad, y personas entrando y saliendo del mismo. Podemos pensar que al conectarnos a Internet realizamos un proceso análogo a entrar en la plaza, pues podemos ver que hay otros usuarios conectados, y relacionarnos con ellos si así lo queremos. Pero no es exactamente lo mismo, pues en el primer caso somos conscientes de los riesgos que conlleva entrar al parque, y solo compartimos la información que nosotros queremos en cada momento. En Internet, automáticamente estamos cediendo una gran cantidad de información, como si fueramos al parque con el DNI en alto, y cualquier persona podría, desde la distancia, saber a qué se dedica una persona, por qué ha venido al parque, su dirección, etc.\\
+	¿Alguna vez te has planteado qué ocurre cuando abres el navegador y te conectas a una web de Internet? En teoría es un proceso sencillo de cara al usuario, algo que hacemos de forma casi automática. Sin embargo, lo que en realidad ocurre en las capas interiores es un proceso complejo, y tratando de entenderlo podemos condicionar nuestro comportamiento en la red para intentar proteger nuestra privacidad.\\
 	
-	Uno de los mayores problemas es la huella digital que dejamos inconscientemente al realizar cualquier conexión. Se trata de nuestra \textit{dirección IP}, la cual es fácilmente detectable y nos identifica de forma unívoca en Internet. Además, es posible \textbf{geolocalizar} el dispositivo desde el cual se está accediendo, simplemente con saber la dirección IP (por ejemplo, en \url{https://whatismyipaddress.com/}).\\
+	Para ilustrar el proceso de conexión de forma muy simplificada, podemos pensar en una plaza o un parque de una ciudad, y personas entrando y saliendo del mismo. No es extraño pensar que al conectarnos a Internet realizamos un proceso análogo a entrar en la plaza, pues podemos ver que hay otros usuarios conectados, y relacionarnos con ellos si así lo queremos. Pero no en realidad no es exactamente lo mismo, pues en el primer caso somos conscientes de los riesgos que conlleva entrar al parque, y solo compartimos la información que nosotros queremos en cada momento. En Internet, automáticamente estamos cediendo una gran cantidad de información, como si fueramos al parque con una hoja con nuestros datos personales en alto, y cualquier persona pudiera, desde la distancia, saber a qué nos dedicamos, por qué hemos venido al parque, nuestra dirección, etc.\\
 	
-	Existen otros problemas derivados, como el envío del historial de búsqueda, cookies de rastreo, y otra información almacenada en nuestro navegador que nos puede identificar de forma única.
+	Uno de los mayores problemas es la huella digital que dejamos inconscientemente al realizar cualquier conexión, compuesta por diferentes elemntos que pueden ser potencialmente usados para identificarnos. Un elemento destacable es nuestra \textit{dirección IP}, la cual es fácilmente detectable y nos identifica de forma unívoca en Internet. Además, es posible \textbf{geolocalizar} el dispositivo desde el cual se está accediendo, simplemente con saber la dirección IP (por ejemplo, en \href{https://whatismyipaddress.com/}{\url{what is my ip address}}).\\
 	
-	Es por esto que surge la necesidad de ocultar nuestra dirección IP en Internet, y nuestro rastro en general. Para ello, existen diferentes alternativas:
 	
-\begin{itemize}
-\item \textbf{Proxy:} Se trata de un servidor intermediario entre las conexiones de un cliente y un servidor, centrado en la navegación. De esta manera, al visitar una página web se puede enviar y recibir información a través de un proxy, y así ocultar nuestra dirección IP a la página de destino, que verá la IP del proxy. Puede utilizarse para acceder a contenido bloqueado en algunos países, como medio de evitar la censura.
-\item \textbf{VPN:} Es un acrónimo para \textit{Virtual Private Network}, red privada virtual. Se trata de un medio de extender una red privada a través de una red pública, de forma que simula que un usuario conectado a través de VPN forme parte físicamente de la red privada. Esto proporciona diversas ventajas:
+	Es cierto que mucha gente se conecta a Internet con una IP temporal asignada para una sola sesión. Sin embargo, dichas direcciones son registradas por los proveedores de servicio (\textit{ISP}), por lo que sería posible descubrir quién usó una cierta dirección IP en un intervalo tiempo concreto.\\
+	
+	Existen otros problemas derivados, como el envío del historial de búsqueda, cookies de rastreo, y otra información almacenada en nuestro navegador que nos puede identificar en la red. En general, compartir esta información no tiene por qué ser dañino para nosotros, pero en un entorno tan grande como Internet, toda precaución es buena. 
+	
+	
+	
+	
+	\section{Métodos para mantener el anonimato}
+	
+	A la hora de ocultar nuestro rastro en Internet existen diferentes alternativas, con diferentes niveles de efectividad.
+	
+\subsection{Proxy} Se trata de un servidor intermediario entre las conexiones de un cliente y un servidor, centrado en la navegación. De esta manera, al visitar una página web se puede enviar y recibir información a través de un proxy, y así ocultar nuestra dirección IP a la página de destino, que verá la IP del proxy. Puede utilizarse para acceder a contenido bloqueado en algunos países, como medio de evitar la censura.
+
+\subsection{VPN} Es un acrónimo para \textit{Virtual Private Network}, red privada virtual. Se trata de un medio de extender una red privada a través de una red pública, de forma que simula que un usuario conectado a través de VPN forme parte físicamente de la red privada. Esto proporciona diversas ventajas:
 
 \begin{itemize}
 	\item Se puede acceder remotamente a los recursos de la red privada como si se formase parte de ella.
@@ -55,30 +69,154 @@
 	\item Se garantiza la confidencialidad, de forma que los paquetes intercambiados en la red están encriptados.
 	\item Existe un sistema de autentificación para conectarse a la red e impedir accesos no deseados.
 	\item También se proporcionan mecanismos para mantener la integridad de los mensajes y detectar mensajes fraudulentos.
-\end{itemize}	
-\item \textbf{Redes de anonimato.} Son el objetivo central de este trabajo, y las discutiremos posteriormente.
-\item \textbf{Otros.} Existen otros mecanismos, menos sofisticados pero muchas veces muy efectivos, como utilizar buscadores que respetan la privacidad (\url{https://duckduckgo.com/}).
 \end{itemize}
+	
+\subsection{Redes de anonimato} 
 
-\section{Invisible Internet Project. Estructura, funcionamiento y seguridad}
+Una red de anonimato permite a los usuarios acceder a la web de forma que se intenta bloquear cualquier seguimiento de su identidad en Internet. Para ello, se canaliza el tráfico a través de una red global de servidores voluntarios.\\
 
-I2P es una herramienta de \textbf{software libre} que ofrece una capa de red de abstracción para comunicaciones entre ordenadores, la cual permite a las aplicaciones que la utilizan transmitir mensajes de forma anónima y segura. Recordemos que una capa de red proporciona conectividad y selección de ruta entre dos sistemas de hosts que pueden estar ubicados en redes geográficamente distintas. Su misión es conseguir que los datos lleguen desde el origen al destino aunque no tengan conexión directa.\\
+Son el objetivo central de este trabajo, y las discutiremos con detalle posteriormente.
 
-En este caso, la selección de ruta o \textit{routing} que ofrece I2P se basa en una serie de nodos conectados a la misma red, que crean caminos temporales y unidireccionales (túneles), siguiendo la técnica de enrutamiento \textit{garlic}, que veremos a continuación.\\
+\subsection{Otros} Existen otros mecanismos, menos sofisticados pero muchas veces muy efectivos, como por ejemplo utilizar buscadores que respetan la privacidad (\href{https://duckduckgo.com/}{\url{DuckDuckGo}}).
+
+
+
+
+    \section{Invisible Internet Project. Estructura, funcionamiento y seguridad}
+
+I2P es una herramienta de \textbf{software libre} que ofrece una capa de red de abstracción  \textbf{distribuida} para comunicaciones entre ordenadores, la cual permite a las aplicaciones que la utilizan transmitir mensajes de forma anónima y segura. Se trata de una red superpuesta (del inglés \textit{overlay network}), que funciona con nodos virtuales en una red construida sobre Internet, cuyas conexiones en la red subyacente pueden ser estar ubicadas en zonas geográficamente muy alejadas. Su misión es conseguir que los datos lleguen desde el origen al destino aunque no exista una conexión directa entre los nodos.\\
+
+En este caso, la selección de ruta o \textit{routing} que ofrece I2P se basa en una serie de nodos conectados a la misma red, que crean caminos temporales y unidireccionales (túneles), siguiendo la técnica de enrutamiento \textit{garlic}, que veremos a más adelante\\
 
 Además, todas las comunicaciones están encriptadas \textit{punto a punto}, lo que añade una capa extra de seguridad a nuestras aplicaciones.
 
-\subsection{Nodos y túneles. Algoritmo Kademlia}
+\subsection{Nodos y túneles}
+
+En la terminología de \textit{I2P}, el software que implementa la capa de red se denomina \textbf{router}, y un ordenador ejecutándolo se denomina \textbf{nodo}. Para garantizar que los mensajes enviados sean anónimos, se construye para cada cliente una serie de \textit{túneles} de llegada y de salida. Estos túneles son una secuencia de nodos que pasan los mensajes de unos a otros, de manera unidireccional. La red es, por tanto, basada en mensajes, de forma similar al protocolo \textbf{IP}.\\
+
+El mecanismo es el siguiente: cuando un cliente quiere enviar un mensaje a otro cliente, lo pasa a uno de sus nodos de salida que apunta a uno de los nodos de llegada del otro cliente, de forma que después de viajar por el túnel, el mensaje llega a su destino. Cada participante de la red elige la longitud de los túneles, de forma que se alcance un equilibrio entre el anonimato, la latencia y el \textit{throughput} que lo satisfaga. El resultado es que el número de conexiones es el mínimo necesario para satisfacer las necesidades del emisor y del receptor.\\
 
 
+A la hora de implementar la conexión, la primera vez que un cliente quiere contactar a otro cliente, realizan una consulta a la "base de datos de redes", que es una tabla \textit{hash} distribuida basada en el algoritmo Kademlia, que explicaremos a continuación.\\
+
+Cuando un router I2P quiere contactar con otro router, necesita saber una información mínima, como la \textit{identidad} del router (una clave de encriptación de 2048 bits) o la dirección de contacto donde se encuentra.\\
+
+\begin{figure}
+    \centering
+	\includegraphics[width=.8\textwidth]{img/DHT}
+	\caption{Tabla hash distribuida (DHT)}
+\end{figure}
 
 
+La búsqueda en la tabla se realiza para encontrar de forma eficiente los túneles de entrada del nodo destino, pero los siguientes mensajes entre el emisor y el receptor normalmente incluyen esta información, por lo que no son necesarias nuevas búsquedas.\\
 
+Por último, cabe mencionar que los mensajes enviados entre los routers están definidos por el \textbf{protocolo I2NP}, cuya especificación completa se puede consultar en \cite{I2NP}.
+
+\subsubsection*{Algoritmo Kademlia}
+
+
+La base de datos de red (\textit{netDB}) se distribuye mediante una técnica simple llamada "\textit{floodfill}", donde un subconjunto de los routers mantienen la base de datos (cada uno tiene una parte). \\
+
+A la hora de realizar una búsqueda desde un nodo, se realiza una consulta al router "floodfill" más cercano. La medida de cercanía se computa siguiendo una modificación del algoritmo Kademlia. Este algoritmo emplea la función XOR entre dos claves de routers para determinar cómo de cerca están uno de otro.\\
+
+La función XOR ($\oplus$) funciona como una \textit{distancia} en el espacio de las claves de los nodos:
+
+\begin{itemize}
+	\item La distancia entre un nodo y él mismo es 0.
+	\item La distancia es simétrica: $A \ \oplus \ B = B \ \oplus \ A$.
+	\item Se verifica la desigualdad triangular: $A \oplus B \leq (A \ \oplus \ C) + (C \ \oplus \ B)$
+\end{itemize}
+
+Una red con $2n$ nodos que emplee este algoritmo en su forma más básica necesitará solo $n$ pasos (en el peor caso) para encontrar un nodo en concreto.
 
 \subsection{Enrutamiento tipo \textit{garlic}}
 
-\subsection{Enmascaramiento de IP}
+En la tecnología I2P, es necesario comprender qué significa el término Garlic. Este término se puede aplicar a 3 conceptos diferentes:
+
+\begin{itemize}
+\item \textbf{Cifrado por capas:}
+Permite que los datos enviados a un receptor no sean descifrados en cada enrutamiento que se lleva a cabo en los diferentes túneles. 
+En esta técnica se construyen caminos, o túneles, a través de una serie de pares (controles de entradas). Podemos distinguir dos fases:
+
+
+\begin{itemize}
+	\item Fase de construcción: cuando un mensaje se está transmitiendo en cada router (nodo), solamente se descifra la información correspondiente al siguiente router al que se le debe enviar el paquete.
+	\item 
+	Fase  operación: Los mensajes pasan a través del túnel y el mensaje y sus instrucciones son mostradas en el punto final de este.
+	
+	
+\end{itemize}	
+
+
+
+
+\item \textbf{Agregación de múltiples mensajes juntos:}
+En \textit{Onion Routing} los mensajes se encapsulan en capas de cifrado, a diferencia de \textit{Garlic Routing} que encripta varios mensajes juntos para que el análisis de tráfico realizado por los atacantes resulte más difícil, así como para aumentar la velocidad de transferencia de datos.
+
+
+\item \textbf{Cifrado utilizando ElGamal/AES. :}
+Herramienta para cifrar la información que usa I2P. Su funcionamiento se explicará más adelante.
+
+
+\end{itemize}
+
+
 
 \subsection{Encriptación de la información}
+
+Se trata del mecanismo empleado por cada uno de los routers en cada canal de comunicación para cifrar los paquetes que viajan entre cada uno de ellos, todos los mensajes son cifrados utilizando el algoritmo de cifrado \textit{ElGamal} y posteriormente se utiliza \textit{AES+SessionTag}.\\
+
+Una de las consecuencias más importantes de la encriptación es que, al estar oculto el contenido de los mensajes enviados (la información que se quiere transmitir, y también otros campos necesarios para establecer la comunicación), \textbf{se enmascara la dirección IP del nodo que envía el mensaje}.
+
+
+\begin{itemize}
+
+\item \textbf{ElGamal:}
+Algoritmo de criptografía asimétrica. Su funcionamiento se basa en cálculos sobre logaritmos discretos usando un número primo y dos enteros.   
+
+
+\item \textbf{AES. :}
+Es lo que se conoce como un cifrado simétrico por bloques, es decir, cifra y descifra los datos en bloques de 128 bits cada uno. Para ello utiliza una clave criptográfica específica que puede ser de 128,192 o 256 bits de tamaño. Dicha clave se especifica al nombrar el cifrado usado (AES-128, AES256...). Además, a cada bloque de texto se le aplica una operación XOR con el previo bloque ya cifrado, haciendo cada mensaje único con el uso de un vector de inicialización en el primer bloque. Esto es lo que se conoce como \textit{Cipher Block Chaining - CBC} 
+
+
+\item \textbf{Algoritmo:} La primera vez que un router quiere cifrar un mensaje para otro router, ambos cifran las claves para una clave de sesión AES256 con \textit{ElGamal} y se adjuntan los bloques cifrados  AES-256-CBC.
+Además del bloque cifrado, se crean un número de \textit{SessionTag} (etiquetas de sesión) que pueden usarse si el remitente desea cifrar un \textit{mensaje Garlic} para otro router, es decir, se cifra con AES los bloques pero usando la clave de sesión usada con la etiqueta de sesión anterior. 
+Cabe destacar que cada etiqueta de sesión puede ser usada únicamente una vez para evitar vulnerabilidades y que tienen un ciclo de vida bastante corto.
+
+
+\end{itemize}
+
+
+
+
+    \section{Otras redes de anonimato: la red TOR}
+    %%% Completar
+    
+    
+    
+    
+    \section{Aplicaciones que usan I2P}
+    %%% Completar (Wikipedia i2p) 
+    
+    
+   
+% -----------------------------------------------
+% Bibliografía.
+% -----------------------------------------------
+\begin{thebibliography}{9}
+
+
+\bibitem{I2NP}
+   \href{https://geti2p.net/spec/i2np}{I2NP Specification}.
+   
+  % https://en.wikipedia.org/wiki/Overlay_network
+  
+  % https://en.wikipedia.org/wiki/Distributed_hash_table
+  
+  % https://en.wikipedia.org/wiki/Internet_privacy
+  
+  % https://geti2p.net/en/docs/how/tech-intro
+
+\end{thebibliography}
 
 \end{document}
