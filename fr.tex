@@ -137,8 +137,7 @@ En la tecnología I2P, es necesario comprender qué significa \textit{Garlic}, c
 
 \subsubsection*{Cifrado por capas}
 
-En esta técnica se construyen los correspondientes túneles a través de una serie de nodos.
-Los mensajes son repetidamente cifrados por el creador y después descifrados en cada salto. Esto permite que los datos enviados a un receptor no sean descifrados en cada enrutamiento que se lleva a cabo en los diferentes túneles. 
+En esta técnica se construyen los correspondientes túneles en los que la información, previamente cifrada por el emisor,  viaja a través de una serie de nodos.
 
 Para explicar la comunicación entre 2 usuarios, nos ayudaremos de un pequeño esquema: \\
 
@@ -148,24 +147,27 @@ Para explicar la comunicación entre 2 usuarios, nos ayudaremos de un pequeño e
 \begin{figure}
 	\centering
 	\includegraphics[width=.8\textwidth]{img/alice_bob_tunnel}
-	\caption{Comunicación a través de los nodos del tunel}
+	\caption{Comunicación a través de los nodos del túnel}
 \end{figure}
 
-Si Alice quiere enviarle un mensaje a Bob, lo envía a uno de sus túneles de salida ya existentes para que sea enviado hasta los túneles de entrada de Bob
+Si Alice quiere enviarle un mensaje a Bob, envía el mensaje a uno de sus túneles de salida que está conectado a uno de los túneles de entrada de Bob
 
-Podemos distinguir dos fases:
+
+El primer nodo del túnel se conoce como \textit{gateway} cuya función es la de fragmentar y empaquetar mensajes I2P en mensajes de túnel de tamaño fijo, que mas adelante son encriptados. 
+Los mensajes del túnel están formados por:
 
 \begin{itemize}
-\item Fase de construcción: Sólo las instrucciones de enrutado para el siguiente salto son expuestas a cada par
-\item 
-Fase  operación: Los mensajes pasan a través del túnel y el mensaje y sus instrucciones son mostradas en el punto final de este.
-	
+	\item ID del tunel: identificadores del tunes de un tamaño de 4 bytes.
+	\item Vector de inicializacion de 16 bytes: hace que cada mensaje sea único.
+	\item Instrucciones de envío.
+	\item Mecanismo de comprobación de errores.
 \end{itemize}
-	
-//Añado tomorrow :3
-https://geti2p.net/es/docs/how/tunnel-routing
-	
-	
+
+Una vez que los mensajes han sido procesados, el \textit{gateway} crea un valor IV aleatorio de 16 bytes, encriptándolo junto al mensaje y enviando al siguiente nodo la tupla {ID del túnel, IV, mensaje del túnel}. 
+
+Este proceso es repetido por cada nodo, hasta el nodo final del túnel de salida, que recuperará los datos prepocesados iniciales.
+
+
 
 \subsubsection*{Agregación de múltiples mensajes juntos:}
 En \textit{Onion Routing} los mensajes se encapsulan en capas de cifrado, a diferencia de \textit{Garlic Routing} que encripta varios mensajes juntos para que el análisis de tráfico realizado por los atacantes resulte más difícil, así como para aumentar la velocidad de transferencia de datos.
