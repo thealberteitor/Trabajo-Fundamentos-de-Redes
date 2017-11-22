@@ -159,7 +159,7 @@ Los mensajes del túnel están formados por:
 	\item ID del tunel: identificadores del tunes de un tamaño de 4 bytes.
 	\item Vector de inicializacion de 16 bytes: hace que cada mensaje sea único.
 	\item Instrucciones de envío.
-	\item Mecanismo de comprobación de errores.
+	\item Relleno(datos inútiles desechables criptográficamente)
 \end{itemize}
 
 Una vez que los mensajes han sido procesados, el \textit{gateway} crea un valor IV aleatorio de 16 bytes, encriptándolo junto al mensaje y enviando al siguiente nodo la tupla \{ID del túnel, IV, mensaje del túnel\}. 
@@ -191,12 +191,26 @@ Algoritmo de criptografía asimétrica. Su funcionamiento se basa en cálculos s
 
 
 \item \textbf{AES. :}
-Es lo que se conoce como un cifrado simétrico por bloques, es decir, cifra y descifra los datos en bloques de 128 bits cada uno. Para ello utiliza una clave criptográfica específica que puede ser de 128,192 o 256 bits de tamaño. Dicha clave se especifica al nombrar el cifrado usado (AES-128, AES256...). Además, a cada bloque de texto se le aplica una operación XOR con el previo bloque ya cifrado, haciendo cada mensaje único con el uso de un vector de inicialización en el primer bloque. Esto es lo que se conoce como \textit{Cipher Block Chaining - CBC} 
+Es lo que se conoce como un cifrado simétrico por bloques, es decir, cifra y descifra los datos en bloques de 128 bits cada uno. Para ello utiliza una clave criptográfica específica que puede ser de 128,192 o 256 bits de tamaño. Dicha clave se especifica al nombrar el cifrado usado (AES128, AES256...). Además, a cada bloque de texto se le aplica una operación XOR con el previo bloque ya cifrado, haciendo cada mensaje único con el uso de un vector de inicialización en el primer bloque. Esto es lo que se conoce como \textit{Cipher Block Chaining - CBC} 
 
 
-\item \textbf{Algoritmo:} La primera vez que un nodo quiere cifrar un mensaje para otro nodo, ambos cifran las claves para una clave de sesión AES256 con \textit{ElGamal} y se adjuntan los bloques cifrados  AES-256-CBC.
-Además del bloque cifrado, se crean un número de \textit{SessionTag} (etiquetas de sesión) que pueden usarse si el remitente desea cifrar un \textit{mensaje Garlic} para otro router, es decir, se cifra con AES los bloques pero usando la clave de sesión usada con la etiqueta de sesión anterior. 
-Cabe destacar que cada etiqueta de sesión puede ser usada únicamente una vez para evitar vulnerabilidades y que tienen un ciclo de vida bastante corto.
+\item \textbf{Procedimiento:} 
+
+
+
+La primera vez que un usuario quiere enviar un mensaje para otro usuario, ambos cifran las claves para una clave de sesión AES256 con \textit{ElGamal} y se adjuntan los bloques que han
+sido cifrados con AES256/CBC que se van cifrando de nuevo cada vez que va pasando por cada nodo del túnel con el siguiente algoritmo:
+
+\begin{itemize}
+	\item Se cifra el IV (vector de inicialización) recibido con AES256/ECB usando su clave IV y así obteniendo el nuevo IV.
+	\item Usa el IV obtenido con la clave de capa del participante para cifrar los datos.
+	\item Cifra el IV actual con AES256/ECB usando la clave IV de nuevo.
+	\item Envía la tupla \{ID del túnel, IV, mensaje del túnel\} al siguiente nodo.
+\end{itemize}
+
+
+
+Cuando se produce la comunicación de dos usuarios, se crean un número de \textit{SessionTag} (etiquetas de sesión) que pueden usarse si el remitente desea cifrar un \textit{mensaje Garlic} para otro router. Dichas etiquetas de sesión pueden ser usadas únicamentes una vez para evitar vulnerabilidades, además, tienen un ciclo de vida muy corto.
 
 
 \end{itemize}
