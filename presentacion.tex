@@ -95,37 +95,29 @@
 
 \maketitle
 
-%%% Inicio diapositiva
-\begin{frame}{Anonimato en el acceso corriente a internet}%{Subtítulo (opcional)}
-
-Hableremos sobre distintas formas de obtener anonimato: \\ %Puedes comentar esta línea si quieres
-
-\vspace{1.5em} %% espaciado vertical
-
-\begin{itemize}
-	\item Proxy, VPN...
-    \item I2P, Invisible Internet Project \\ 
-\end{itemize}
-
-\vspace{1.5em} %% espaciado vertical
-
-%El espaciado vertical se controla con "$\textbackslash$vspace$\{1.2em\}$", modificando el número de dentro.
-
-\end{frame}  
-%%% Fin diapositiva
 
 
-
-
-
-\begin{frame}
-	Podemos poner una diapos. con una foto introductoria para el simil de cuando
-	nos conectamos a la red - plaza , if u want it would be great
+\begin{frame}{Privacidad en la red}
+	
+	\textit{"[Privacy] can be defined as an individual's claim to control the terms under which personal information -- information identifiable to the individual -- is acquired, disclosed, and used."}
+	
+	%% símil del parque
+	
 \end{frame}
 
 
 
+\begin{frame}{Anonimato en el acceso corriente a Internet}
 
+\begin{itemize}
+	\item Identificación de forma unívoca por la \textbf{dirección IP}
+	\item Geolocalización
+    \item Rastreo de datos personales (\textit{tracking})\\ 
+    \item Cookies
+    \item Anuncios dirigidos
+\end{itemize}
+
+\end{frame}  
 
 
 
@@ -133,15 +125,12 @@ Hableremos sobre distintas formas de obtener anonimato: \\ %Puedes comentar esta
 	
 \begin{itemize}
 	\item Proxy \\
-	\item VPN - Virtual Private Network \\ 
+	\item VPN\\ 
+	\item Redes anónimas\\
 	\item Otros
 \end{itemize}	
 	
-	
 \end{frame}
-
-
-
 
 
 
@@ -152,25 +141,23 @@ Servidor intermediario entre las conexiones de un cliente y un servidor. \\
 \vspace{2.9em}
 \begin{itemize}
 	\item Dirección IP camuflada \\
-	\item Acceso a contenido bloqueados de algunos países \\ 
+	\item Acceso a contenido bloqueados en algunos países \\ 
 \end{itemize}
 	
 \end{frame}
 
 
 
-
-
 \begin{frame}{VPN}
 
-Medio de extender una red privada a través de una red pública
+Acrónimo de \textit{Virtual Private Network}. Es un medio de extender una red privada a través de una red pública.
 
 \vspace{1.9em}
 
 \begin{itemize}
-	\item Se puede acceder a una red privada remotamente \\
+	\item Acceso remoto a una red privada (UGR) \\
 	\item Dirección IP camuflada \\ 
-	\item Confidencialidad garantizada - Paquetes encriptados \\
+	\item Confidencialidad garantizada: paquetes encriptados \\
 	\item Sistema de autentificación para conectarse
 	\item Mecanismos para mantener integridad de mensajes
 \end{itemize}	
@@ -179,46 +166,48 @@ Medio de extender una red privada a través de una red pública
 
 
 
-
-
-
-\begin{frame}{Otros...}
+\begin{frame}{Otros$\dots$}
 
 \begin{itemize}
-	\item Navegadores privados: DuckDuckGo
-	\item Buscar otro ej. NO tengo internet here D:
+	\item Buscadores que no te rastrean (e.g. DuckDuckGo)
+	\item HTTPS
+	\item Navegación en sitios de confianza
 \end{itemize}
 
 \end{frame}
 
 
 
-\begin{frame}{I2P, Invisible Internet Project}
+\begin{frame}{Redes anónimas}{Invisible Internet Project}
+	\vspace{-1em}
 	
-Se puede poner diapositiva introductoria a I2P con foto	
+	\begin{figure}
+	\centering
+	\includegraphics[width=.5\textwidth]{img/i2p_logo}
+\end{figure}
+I2P es una herramienta de \textbf{software libre} que ofrece una capa de red de abstracción distribuida para comunicaciones entre ordenadores, la cual permite a las aplicaciones que la utilizan transmitir mensajes de forma anónima y segura.
 	
 \end{frame}
 
 
 
+\begin{frame}{Invisible Internet Project}{Estructura}
+	
+%%% red superpuesta: red construida sobre otra red
 
-\begin{frame}{I2P, Invisible Internet Project}
-	
-	
+Se trata de una red superpuesta (\textit{overlay network}) basada en el intercambio de paquetes.
+
 \begin{itemize}
-	\item Nodos y túneles
-	\item Enrutamiento tipo garlic
-	\item Encriptación de la información
-\end{itemize}	
+	\item Los paquetes están dirigidos a direcciones criptográficas.
+	\item Emisor y receptor no pueden identificarse mutuamente.
+	\item Comunicaciones ocultas a terceros (encriptadas)
+	\item 
+\end{itemize}
 	
 \end{frame}
 
 
-
-
-
-
-\begin{frame}{I2P, Invisible Internet Project}
+\begin{frame}{Invisible Internet Project}{Estructura. Nodos}
 	
 	Nodos y túneles for you
 	and kademlia too	
