@@ -43,9 +43,9 @@
 	
 	¿Alguna vez te has planteado qué ocurre cuando abres el navegador y te conectas a una web de Internet? En teoría es un proceso sencillo de cara al usuario, algo que hacemos de forma casi automática. Sin embargo, lo que en realidad ocurre en las capas interiores es un proceso complejo, y tratando de entenderlo podemos condicionar nuestro comportamiento en la red para intentar proteger nuestra privacidad.\\
 	
-	Para ilustrar el proceso de conexión de forma muy simplificada, podemos pensar en una plaza o un parque de una ciudad, y personas entrando y saliendo del mismo. No es extraño pensar que al conectarnos a Internet realizamos un proceso análogo a entrar en la plaza, pues podemos ver que hay otros usuarios conectados, y relacionarnos con ellos si así lo queremos. Pero no en realidad no es exactamente lo mismo, pues en el primer caso somos conscientes de los riesgos que conlleva entrar al parque, y solo compartimos la información que nosotros queremos en cada momento. En Internet, automáticamente estamos cediendo una gran cantidad de información, como si fueramos al parque con una hoja con nuestros datos personales en alto, y cualquier persona pudiera, desde la distancia, saber a qué nos dedicamos, por qué hemos venido al parque, nuestra dirección, etc.\\
+	Para ilustrar el proceso de conexión de forma muy simplificada, podemos pensar en una plaza o un parque de una ciudad, y personas entrando y saliendo del mismo. No es extraño pensar que al conectarnos a Internet realizamos un proceso análogo a entrar en la plaza, pues podemos ver que hay otros usuarios conectados, y relacionarnos con ellos si así lo queremos. Pero en realidad no es exactamente lo mismo, pues en el primer caso somos conscientes de los riesgos que conlleva entrar al parque, y solo compartimos la información que nosotros queremos en cada momento. En Internet, automáticamente estamos cediendo una gran cantidad de información, como si fueramos al parque con una hoja con nuestros datos personales en alto, y cualquier persona pudiera, desde la distancia, saber a qué nos dedicamos, por qué hemos venido al parque, nuestra dirección, etc.\\
 	
-	Uno de los mayores problemas es la huella digital que dejamos inconscientemente al realizar cualquier conexión, compuesta por diferentes elemntos que pueden ser potencialmente usados para identificarnos. Un elemento destacable es nuestra \textit{dirección IP}, la cual es fácilmente detectable y nos identifica de forma unívoca en Internet. Además, es posible \textbf{geolocalizar} el dispositivo desde el cual se está accediendo, simplemente con saber la dirección IP (por ejemplo, en \href{https://whatismyipaddress.com/}{\url{what is my ip address}}).\\
+	Uno de los mayores problemas es la huella digital que dejamos inconscientemente al realizar cualquier conexión, compuesta por diferentes elementos que pueden ser potencialmente usados para identificarnos. Un elemento destacable es nuestra \textit{dirección IP}, la cual es fácilmente detectable y nos identifica de forma unívoca en Internet. Además, es posible \textbf{geolocalizar} el dispositivo desde el cual se está accediendo, simplemente con saber la dirección IP (por ejemplo, en \href{https://whatismyipaddress.com/}{\url{what is my ip address}}).\\
 	
 	
 	Es cierto que mucha gente se conecta a Internet con una IP temporal asignada para una sola sesión. Sin embargo, dichas direcciones son registradas por los proveedores de servicio (\textit{ISP}), por lo que sería posible descubrir quién usó una cierta dirección IP en un intervalo tiempo concreto.\\
@@ -86,7 +86,7 @@ Son el objetivo central de este trabajo, y las discutiremos con detalle posterio
 
 I2P es una herramienta de \textbf{software libre} que ofrece una capa de red de abstracción  \textbf{distribuida} para comunicaciones entre ordenadores, la cual permite a las aplicaciones que la utilizan transmitir mensajes de forma anónima y segura. Se trata de una red superpuesta (del inglés \textit{overlay network}), que funciona con nodos virtuales en una red construida sobre Internet, cuyas conexiones en la red subyacente pueden ser estar ubicadas en zonas geográficamente muy alejadas. Su misión es conseguir que los datos lleguen desde el origen al destino aunque no exista una conexión directa entre los nodos.\\
 
-En este caso, la selección de ruta o \textit{routing} que ofrece I2P se basa en una serie de nodos conectados a la misma red, que crean caminos temporales y unidireccionales (túneles), siguiendo la técnica de enrutamiento \textit{garlic}, que veremos a más adelante\\
+En este caso, la selección de ruta o \textit{routing} que ofrece I2P se basa en una serie de nodos conectados a la misma red, que crean caminos temporales y unidireccionales (túneles), siguiendo la técnica de enrutamiento \textit{garlic}, que veremos más adelante.\\
 
 Además, todas las comunicaciones están encriptadas \textit{punto a punto}, lo que añade una capa extra de seguridad a nuestras aplicaciones.
 
@@ -234,7 +234,7 @@ Cuando se produce la comunicación de dos usuarios, se crean un número de \text
     Tor no es una red P2P distribuida pura, pues emplea una serie de servidores de confianza, establecidos por la propia red, que se encargan de mantener la base de datos en red. La IP de estos servidores es pública, y los nodos de la red deben pasar por ellos para establecer conexiones. Esto puede ser explotado de diferentes maneras por atacantes potenciales, e incluso puede ser utilizado para imponer \textbf{censura} en la red: basta con bloquear de forma global el acceso a dichas direcciones IP.
     
     \subsection{\textit{Outproxies}}
-   Tor está diseñada y optimizada para permitir el acceso a Internet a través de la red interna. Los nodos con salida a Internet se denominan \textit{exit nodes}, y suponen una vulnerabilidad añadida. Un atacante malicioso posicionado en un nodo de salida podría realizar lo que se conoce como \textit{eavesdropping} (escuchar a escondidas), para capturar el tráfico entre dicho nodo y el servidor de destino.\\
+   Tor está diseñada y optimizada para permitir el acceso a Internet a través de la red interna. Los nodos con salida a Internet se denominan \textit{exit nodes}, y suponen una vulnerabilidad añadida. Un atacante malicioso posicionado en un nodo de salida podría realizar lo que se conoce como \textit{eavesdropping} (escuchar a escondidas), para capturar el tráfico entre dicho nodo y el servidor de destino\footnote{\href{https://www.wired.com/2007/09/rogue-nodes-turn-tor-anonymizer-into-eavesdroppers-paradise/?currentPage=all}{Rogue Nodes Turn Tor Anonymizer Into Eavesdropper's Paradise.}}.\\
    
    I2P también proporciona mecanismos de salida a Internet. Sin embargo, la atención se centra en comunicaciones dentro de la red, por lo que el número de nodos con salida a Internet es bastante más pequeño.
    
@@ -251,6 +251,7 @@ Una vez tengamos configurado I2P en nuestro equipo, podremos conectarnos a la re
  	\textbf{Nightweb}, aplicación que usa I2P y BitTorrent para compartir entradas de blogs, fotos y otros contenidos similares.
  \end{itemize}
     
+    \vspace{2em}
 % -----------------------------------------------
 % Bibliografía.
 % -----------------------------------------------
@@ -260,14 +261,33 @@ Una vez tengamos configurado I2P en nuestro equipo, podremos conectarnos a la re
 \bibitem{I2NP}
    \href{https://geti2p.net/spec/i2np}{I2NP Specification}
    
-  % https://en.wikipedia.org/wiki/Overlay_network
-  
-  % https://en.wikipedia.org/wiki/Distributed_hash_table
-  
-  % https://en.wikipedia.org/wiki/Internet_privacy
-  
-  % https://geti2p.net/en/docs/how/tech-intro
+   \bibitem{Overlay}
+   \href{https://en.wikipedia.org/wiki/Overlay_network}{Overlay Network}
+   
+   \bibitem{DHT}
+   \href{https://en.wikipedia.org/wiki/Distributed_hash_table}{Distributed Hash Table}
+   
+   \bibitem{TechIntro}
+    \href{https://geti2p.net/en/docs/how/tech-intro}{I2P Technical Introduction}
+    
+    \bibitem{Onion}
+    \href{https://en.wikipedia.org/wiki/Onion_routing}{Onion Routing}
+ 
 
+    \bibitem{Proxy}
+    \href{https://en.wikipedia.org/wiki/Proxy_server}{Proxy Server}
+    
+    \bibitem{VPN} 
+    \href{https://en.wikipedia.org/wiki/Virtual_private_network}{VPN}
+    
+    
+    \bibitem{Tor}
+    \href{https://en.wikipedia.org/wiki/Tor_%28anonymity_network%29}{Tor Network}
+    
+    \bibitem{I2PvsTor}
+    \href{https://geti2p.net/en/comparison/tor}{I2P vs Tor}
+    
+    
 \end{thebibliography}
 
 \end{document}

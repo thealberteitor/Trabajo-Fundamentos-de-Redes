@@ -65,9 +65,6 @@
 
 %%% AJUSTES DE BEAMER
 
-% ¿Negrita en el título de diapositiva o no?
-%\setbeamertemplate{frametitle}{\color{accent}\vspace*{1cm}\bfseries\insertframetitle\par\vskip-6pt}
-
 \setbeamertemplate{frametitle}{\color{900}\vspace*{1cm}\insertframetitle\\\usebeamerfont{framesubtitle}\insertframesubtitle\par\vskip-6pt}
 
 \setbeamertemplate{itemize items}[circle] % Viñetas de itemize
@@ -100,8 +97,7 @@
 \begin{frame}{Privacidad en la red}
 	
 	\textit{"[Privacy] can be defined as an individual's claim to control the terms under which personal information -- information identifiable to the individual -- is acquired, disclosed, and used."}
-	
-	%% símil del parque
+
 	
 \end{frame}
 
@@ -138,7 +134,12 @@
 	
 Servidor intermediario entre las conexiones de un cliente y un servidor. \\
 
-\vspace{2.9em}
+\begin{figure}[h]
+ 	\centering
+ 	\includegraphics[width=.5\textwidth]{img/proxy}
+\end{figure}
+
+
 \begin{itemize}
 	\item Dirección IP camuflada \\
 	\item Acceso a contenido bloqueados en algunos países \\ 
@@ -146,7 +147,12 @@ Servidor intermediario entre las conexiones de un cliente y un servidor. \\
 	
 \end{frame}
 
-
+\begin{frame}{VPN}
+ 	\begin{figure}[h]
+ 		\centering
+ 		\includegraphics[width=.75\textwidth]{img/vpn}
+ 	\end{figure}
+ \end{frame}
 
 \begin{frame}{VPN}
 
@@ -170,8 +176,7 @@ Acrónimo de \textit{Virtual Private Network}. Es un medio de extender una red p
 
 \begin{itemize}
 	\item Buscadores que no te rastrean (e.g. DuckDuckGo)
-	\item Sistemas operativos específicos (e.g. TAILS)
-    \item HTTPS
+	\item Sistemas operativos específicos (e.g. Tails)
 \end{itemize}
 
 \end{frame}
@@ -192,16 +197,14 @@ I2P es una herramienta de \textbf{software libre} que ofrece una capa de red de 
 
 
 \begin{frame}{Invisible Internet Project}{Estructura}
-	
-%%% red superpuesta: red construida sobre otra red
 
 Se trata de una red superpuesta (\textit{overlay network}) basada en el intercambio de paquetes.
 
 \begin{itemize}
 	\item Los paquetes están dirigidos a direcciones criptográficas.
 	\item Emisor y receptor no pueden identificarse mutuamente.
-	\item Comunicaciones ocultas a terceros (encriptadas)
-	\item Funcionamiento P2P
+	\item Comunicaciones ocultas a terceros (encriptadas).
+	\item Funcionamiento P2P.
 \end{itemize}
 	
 \end{frame}
@@ -227,7 +230,7 @@ Cada cliente construye una serie de túneles de entrada (\textit{inbound}) y de 
 
 \begin{figure}
 	\centering
-	\includegraphics{img/alice_bob_tunnel}
+	\includegraphics[width=.8\textwidth]{img/alice_bob_tunnel}
 \end{figure}
 
 Se elige la longitud del túnel para encontrar un equilibrio entre el anonimato, la latencia y el \textit{throughput}.
@@ -250,6 +253,7 @@ Cuando se envía un mensaje, se buscan en la tabla los túneles de entrada del n
 
 Los accesos y consultas a la base de datos se realizan al nodo \textit{floodfill} más cercano. La medida de cercanía se computa utilizando la métrica XOR sobre el ID de los nodos.
 
+\vspace{1.5em}
 \begin{itemize}
 	\item $A \oplus B \ge 0$, y $A \oplus B = 0 \iff A = B$ 
 	\item $A \ \oplus \ B = B \ \oplus \ A$.
@@ -259,15 +263,18 @@ Los accesos y consultas a la base de datos se realizan al nodo \textit{floodfill
 \end{frame}
 
 
+\begin{frame}{Invisible Internet Project}{Ejemplo de comunicación}
+\begin{figure}
+	\centering
+	\includegraphics[width=.8\textwidth]{img/alice_bob_message}
+\end{figure}
+	
+\end{frame}
 
 
-
-\begin{frame}{I2P, Invisible Internet Project}
+\begin{frame}{\textit{Garlic routing}}
 	
 Enrutamiento tipo garlic:
-
-
-\vspace{1.9em}
 
 
 \begin{itemize}
@@ -276,18 +283,93 @@ Enrutamiento tipo garlic:
 	\item Cifrado ElGamal/AES
 \end{itemize}
 	
+\end{frame}
+
+
+\begin{frame}{\textit{Garlic routing}}{Cifrado por capas}
+	
+ 
+ 
+ \begin{itemize}
+ 	\item Comunicación de dos usuarios mediante túneles
+ 	\item La información viaja desde el primer nodo del túnel hasta el último
+ 	\item El '\textit{gateway}' fragmenta mensajes I2P en mensajes de túnel
+ 	\item En cada salto se envía: \{ID del túnel, IV, mensaje del túnel\}
+ \end{itemize}
+ 
+ 
+ \end{frame}
+ 
+ 
+ \begin{frame}{\textit{Garlic routing}}{Agregación de mensajes}
+ 
+ 
+ Agregación de múltiples mensajes juntos juntos para aumentar velocidad de transferencia de datos y aumentar seguridad.
+ 
+ \begin{figure}
+\centering
+\includegraphics[width=.35\textwidth]{img/garlic}
+\end{figure}
+
+ 	
+ \end{frame}
+ 
+ \begin{frame}{\textit{Garlic routing}}{Encriptación de la información}
+ 
+ Tipos de cifrado:
+ \begin{itemize}
+ 	\item Cifrado ElGamal
+ 	\item AES: Cifrado simétrico por bloques de 128 bits
+ \end{itemize}
+ \vspace{1em}
+ 
+ Procedimiento aplicado a los mensajes:
+ 	\begin{itemize}
+ 		\item Se cifra el IV recibido con AES
+ 		\item Usa el IV obtenido para cifrar los datos
+ 		\item Cifra de nuevo el IV usando AES
+ 		\item Envía \{ID del túnel, IV, mensaje del túnel\} al siguiente nodo
+ 	\end{itemize}
+
+ 
+ \end{frame}
+ 
+ 
+ 
+ \begin{frame}{I2P vs Tor}
+ 
+ \begin{itemize}
+	\item \textit{Onion routing} vs \textit{Garlic routing}
+	\item \textit{Túneles bidireccionales vs túneles unidireccionales}
+	\item Directiorio distribuido vs centralizado. Peer selection.
+	\item Outproxies
+\end{itemize}
+   
+\end{frame}
+ 
+ 
+ \begin{frame}{Software I2P}
+ 	
+ 
+ \begin{itemize}
+ 	\item Susimail: Interfaz web  para emails
+ 	\item Syndie: blogs, noticias y foros para I2P
+ 	\item I2P Messenger: Cliente de mensajería instantánea
+ 	\item Navegación web mediante webs anónimas
+ 	\item Compartición de archivos mediante el uso de BitTorrent dentro de la red I2P
+ 	\item (Android) Nightweb, aplicación que usa I2P y BitTorrent para compartir entradas
+ 	de blogs, fotos y otros contenidos similares
+ \end{itemize}
+ 	
+ \end{frame}
+
+\begin{frame}{I2P}{Demo}
+Acceso a la red I2P. Configuración, panel de control y ejemplo de navegación.\\
+
+\vspace{2em}
+
+El software se puede descargar en el siguiente enlace: \href{https://geti2p.net/en/download}{\url{https://geti2p.net/en/download}}
 	
 \end{frame}
-
-
-
-\begin{frame}{I2P, Invisible Internet Project}
-
-gonna study topología, see ya I2P!
-
-\end{frame}
-
-
-
 
 \end{document}
