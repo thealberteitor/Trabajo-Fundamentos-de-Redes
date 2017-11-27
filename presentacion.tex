@@ -170,8 +170,8 @@ Acrónimo de \textit{Virtual Private Network}. Es un medio de extender una red p
 
 \begin{itemize}
 	\item Buscadores que no te rastrean (e.g. DuckDuckGo)
-	\item HTTPS
-	\item Navegación en sitios de confianza
+	\item Sistemas operativos específicos (e.g. TAILS)
+    \item HTTPS
 \end{itemize}
 
 \end{frame}
@@ -201,19 +201,62 @@ Se trata de una red superpuesta (\textit{overlay network}) basada en el intercam
 	\item Los paquetes están dirigidos a direcciones criptográficas.
 	\item Emisor y receptor no pueden identificarse mutuamente.
 	\item Comunicaciones ocultas a terceros (encriptadas)
-	\item 
+	\item Funcionamiento P2P
 \end{itemize}
 	
 \end{frame}
 
 
-\begin{frame}{Invisible Internet Project}{Estructura. Nodos}
-	
-	Nodos y túneles for you
-	and kademlia too	
+
+\begin{frame}{Invisible Internet Project}{Estructura}
+
+\begin{itemize}
+\item Un \textbf{nodo} es un ordenador conectado a I2P.
+\item Un \textbf{túnel} es una secuencia de nodos que forman camino temporal, unidireccional y seguro por el que viajan los mensajes.
+\end{itemize}
+
 	
 \end{frame}
 
+
+
+\begin{frame}{Invisible Internet Project}{Funcionamiento}
+
+Cada cliente construye una serie de túneles de entrada (\textit{inbound}) y de salida (\textit{outbound}).
+
+
+\begin{figure}
+	\centering
+	\includegraphics{img/alice_bob_tunnel}
+\end{figure}
+
+Se elige la longitud del túnel para encontrar un equilibrio entre el anonimato, la latencia y el \textit{throughput}.
+
+\end{frame}
+
+\begin{frame}{Invisible Internet Project}{netDB}
+
+La base de datos en red está completamente distribuida. En cada instante, hay un subconjunto de nodos especiales (\textit{floodfill nodes}) encargados de mantenerla.\\
+
+\begin{figure}
+	\centering
+	\includegraphics[width=.6\textwidth]{img/DHT.pdf}
+\end{figure}
+
+Cuando se envía un mensaje, se buscan en la tabla los túneles de entrada del nodo destino (\textit{LeaseSet}).
+\end{frame}
+
+\begin{frame}{Invisible Internet Project}{Algoritmo Kademlia}
+
+Los accesos y consultas a la base de datos se realizan al nodo \textit{floodfill} más cercano. La medida de cercanía se computa utilizando la métrica XOR sobre el ID de los nodos.
+
+\begin{itemize}
+	\item $A \oplus B \ge 0$, y $A \oplus B = 0 \iff A = B$ 
+	\item $A \ \oplus \ B = B \ \oplus \ A$.
+	\item $A \oplus B \leq (A \ \oplus \ C) + (C \ \oplus \ B)$
+\end{itemize}
+	
+\end{frame}
 
 
 
