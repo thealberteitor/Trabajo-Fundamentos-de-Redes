@@ -77,7 +77,7 @@ Una red de anonimato permite a los usuarios acceder a la web de forma que se int
 
 Son el objetivo central de este trabajo, y las discutiremos con detalle posteriormente.
 
-\subsection{Otros} Existen otros mecanismos, menos sofisticados pero muchas veces muy efectivos, como por ejemplo utilizar buscadores que respetan la privacidad (\href{https://duckduckgo.com/}{\url{DuckDuckGo}}).
+\subsection{Otros} Existen otros mecanismos, menos sofisticados pero muchas veces muy efectivos, como por ejemplo utilizar buscadores que respetan la privacidad (\href{https://duckduckgo.com/}{\url{DuckDuckGo}}), o emplear sistemas operativos orientados específicamente a la seguridad y la privacidad (\href{https://tails.boum.org/}{\url{Tails}}).
 
 
 
@@ -133,13 +133,11 @@ Una red con $2n$ nodos que emplee este algoritmo en su forma más básica necesi
 
 \subsection{Enrutamiento tipo \textit{garlic}}
 
-En la tecnología I2P, es necesario comprender qué significa \textit{Garlic}, cuyo término, al no ser preciso, se le puede atribuir a 3 conceptos diferentes: 
+En la tecnología I2P, es necesario comprender qué significa \textit{Garlic}, cuyo término, al no ser preciso, se le puede atribuir a 3 conceptos diferentes. 
 
 \subsubsection*{Cifrado por capas}
 
-En esta técnica se construyen los correspondientes túneles en los que la información, previamente cifrada por el emisor,  viaja a través de una serie de nodos.
-
-Para explicar la comunicación entre 2 usuarios, nos ayudaremos de un pequeño esquema: \\
+En esta técnica se construyen los correspondientes túneles en los que la información, previamente cifrada por el emisor,  viaja a través de una serie de nodos. Para explicar la comunicación entre 2 usuarios, nos ayudaremos de un pequeño esquema: \\
 
 
 	
@@ -149,37 +147,36 @@ Para explicar la comunicación entre 2 usuarios, nos ayudaremos de un pequeño e
 	\caption{Comunicación a través de los nodos del túnel}
 \end{figure}
 
-Si Alice quiere enviarle un mensaje a Bob, envía el mensaje a uno de sus túneles de salida que está conectado a uno de los túneles de entrada de Bob
+Si Alice quiere enviarle un mensaje a Bob, envía el mensaje a uno de sus túneles de salida que está conectado a uno de los túneles de entrada de Bob.\\
 
 
-El primer nodo del túnel se conoce como \textit{gateway} cuya función es la de fragmentar y empaquetar mensajes I2P en mensajes de túnel de tamaño fijo, que mas adelante son encriptados. 
+El primer nodo del túnel se conoce como \textit{gateway}, y su función es la de fragmentar y empaquetar mensajes I2P en mensajes de túnel de tamaño fijo, que más adelante son encriptados. 
 Los mensajes del túnel están formados por:
 
 \begin{itemize}
-	\item ID del tunel: identificadores del tunes de un tamaño de 4 bytes.
+	\item ID del tunel: identificadores del túnel de un tamaño de 4 bytes.
 	\item Vector de inicializacion de 16 bytes: hace que cada mensaje sea único.
 	\item Instrucciones de envío.
-	\item Relleno(datos inútiles desechables criptográficamente)
+	\item Relleno (datos inútiles desechables criptográficamente)
 \end{itemize}
 
-Una vez que los mensajes han sido procesados, el \textit{gateway} crea un valor IV aleatorio de 16 bytes, encriptándolo junto al mensaje y enviando al siguiente nodo la tupla \{ID del túnel, IV, mensaje del túnel\}. 
+Una vez que los mensajes han sido procesados, el \textit{gateway} crea un valor IV aleatorio de 16 bytes, encriptándolo junto al mensaje y enviando al siguiente nodo la tupla $\{$ID del túnel, IV, mensaje del túnel$\}$.\\
 
-Este proceso es repetido por cada nodo, hasta el nodo final del túnel de salida, que recuperará los datos prepocesados iniciales.
+Este proceso es repetido por cada nodo hasta el nodo final del túnel de salida, que recuperará los datos prepocesados iniciales. En cada paso, se desencripta solo la capa superior del mensaje, que proporciona información sobre el siguiente nodo al que debe ser transmitido.
 
 
 
-\subsubsection*{Agregación de múltiples mensajes juntos:}
+\subsubsection*{Agregación de múltiples mensajes juntos}
+
 En \textit{Onion Routing} los mensajes se encapsulan en capas de cifrado, a diferencia de \textit{Garlic Routing} que encripta varios mensajes juntos para que el análisis de tráfico realizado por los atacantes resulte más difícil, así como para aumentar la velocidad de transferencia de datos.
 
-\subsubsection*{Cifrado utilizando ElGamal/AES:}
-Herramienta para cifrar la información que usa I2P cuyo funcionamiento explicaremos más adelante.
-
-
+\subsubsection*{Cifrado utilizando ElGamal/AES}
+Es una herramienta para cifrar la información que usa I2P cuyo funcionamiento explicaremos más adelante.
 
 
 \subsection{Encriptación de la información}
 
-Se trata del mecanismo empleado por cada uno de los routers en cada canal de comunicación para cifrar los paquetes que viajan entre cada uno de ellos, todos los mensajes son cifrados utilizando el algoritmo de cifrado \textit{ElGamal} y posteriormente se utiliza \textit{AES+SessionTag}.\\
+Se trata del mecanismo empleado por cada uno de los routers en cada canal de comunicación para cifrar los paquetes que viajan entre cada uno de ellos. Todos los mensajes son cifrados utilizando el algoritmo de cifrado \textit{ElGamal} y posteriormente se utiliza \textit{AES+SessionTag}.\\
 
 Una de las consecuencias más importantes de la encriptación es que, al estar oculto el contenido de los mensajes enviados (la información que se quiere transmitir, y también otros campos necesarios para establecer la comunicación), \textbf{se enmascara la dirección IP del nodo que envía el mensaje}.
 
@@ -190,45 +187,70 @@ Una de las consecuencias más importantes de la encriptación es que, al estar o
 Algoritmo de criptografía asimétrica. Su funcionamiento se basa en cálculos sobre logaritmos discretos usando un número primo y dos enteros.   
 
 
-\item \textbf{AES. :}
-Es lo que se conoce como un cifrado simétrico por bloques, es decir, cifra y descifra los datos en bloques de 128 bits cada uno. Para ello utiliza una clave criptográfica específica que puede ser de 128,192 o 256 bits de tamaño. Dicha clave se especifica al nombrar el cifrado usado (AES128, AES256...). Además, a cada bloque de texto se le aplica una operación XOR con el previo bloque ya cifrado, haciendo cada mensaje único con el uso de un vector de inicialización en el primer bloque. Esto es lo que se conoce como \textit{Cipher Block Chaining - CBC} 
+\item \textbf{AES:}
+Es lo que se conoce como un cifrado simétrico por bloques, es decir, cifra y descifra los datos en bloques de 128 bits cada uno. Para ello utiliza una clave criptográfica específica que puede ser de 128, 192 o 256 bits de tamaño. Dicha clave se especifica al nombrar el cifrado usado (AES128, AES256...). Además, a cada bloque de texto se le aplica una operación XOR con el bloque previo ya cifrado, haciendo cada mensaje único con el uso de un vector de inicialización en el primer bloque. Esto es lo que se conoce como \textit{Cipher Block Chaining - CBC}.
+\end{itemize}
 
-
-\item \textbf{Procedimiento:} 
+\subsection*{Procedimiento}
 
 
 
 La primera vez que un usuario quiere enviar un mensaje para otro usuario, ambos cifran las claves para una clave de sesión AES256 con \textit{ElGamal} y se adjuntan los bloques que han
-sido cifrados con AES256/CBC que se van cifrando de nuevo cada vez que va pasando por cada nodo del túnel con el siguiente algoritmo:
+sido cifrados con AES256/CBC, que se van cifrando de nuevo cada vez que va pasando por cada nodo del túnel con el siguiente algoritmo:
 
 \begin{itemize}
-	\item Se cifra el IV (vector de inicialización) recibido con AES256/ECB usando su clave IV y así obteniendo el nuevo IV.
+	\item Se cifra el IV (vector de inicialización) recibido con AES256/ECB usando su clave IV, obteniendo así el nuevo IV.
 	\item Usa el IV obtenido con la clave de capa del participante para cifrar los datos.
 	\item Cifra el IV actual con AES256/ECB usando la clave IV de nuevo.
 	\item Envía la tupla \{ID del túnel, IV, mensaje del túnel\} al siguiente nodo.
-\end{itemize}
-
-
-
-Cuando se produce la comunicación de dos usuarios, se crean un número de \textit{SessionTag} (etiquetas de sesión) que pueden usarse si el remitente desea cifrar un \textit{mensaje Garlic} para otro router. Dichas etiquetas de sesión pueden ser usadas únicamentes una vez para evitar vulnerabilidades, además, tienen un ciclo de vida muy corto.
 
 
 \end{itemize}
 
+Cuando se produce la comunicación de dos usuarios, se crean un número de \textit{SessionTag} (etiquetas de sesión) que pueden usarse si el remitente desea cifrar un mensaje \textit{garlic} para otro router. Dichas etiquetas de sesión pueden ser usadas únicamente una vez para evitar vulnerabilidades, y además tienen un ciclo de vida muy corto.
 
 
 
-    \section{Otras redes de anonimato: la red TOR}
+
+
+    \section{Otras redes de anonimato: la red Tor}
     %%% Completar
     
+    Una de las redes anónimas más conocidad y utilizadas es la \textbf{red Tor}. Esta red cuenta con una base de usuarios notablemente más extensa que I2P, pero a la hora de implementar las comunicaciones hay algunas diferencias.
+    
+    \subsection{\textit{Onion routing}}
+    La red Tor utiliza un mecanismo conocimo como \textit{onion routing} para transmitir mensajes, en contraposición al ya mencionado \textit{garlic routing} que emplea I2P. En esencia, el enrutamiento tipo \textit{garlic} es una modificación del \textit{onion}, pues se basa en la misma idea.\\
+    
+   Con la técnica de \textit{onion routing}, se cifran los mensajes en varias capas, de forma que cada nodo desencripta únicamente una capa, que contiene las instrucciones para enviar el mensaje al siguiente nodo, sin tener acceso al mensaje en sí. El nombre proviene de la analogía de las capas de una cebolla, pues en cada paso se $"$quita$"$ una capa.\\
     
     
+ La técnica de \textit{garlic routing} es similar, con la diferencia de que permite enviar varios mensajes agrupados en un mismo paquete, que se denomina \textit{garlic clove} (diente de ajo). Así, por ejemplo, un nodo puede enviar un mensaje a otro, agrupando también en dicho mensaje la dirección de alguno de sus túneles de entrada. De esta forma se permite que el nodo receptor envíe una respuesta al nodo emisor sin tener que realizar una búsqueda en la base de datos (\textit{netDB}).
+ 
+ \subsection{Túneles bidireccionales}
+ 
+ La red Tor implementa túneles bidireccionales, mientras que I2P hace uso de túneles unidireccionales. Aunque no está demostrado que los segundos proporcionen más seguridad que los primeros, en principio con túneles unidireccionales se necesitaría el doble de esfuerzo para acceder a la misma cantidad de datos que se podría acceder con túneles bidireccionales (mensaje-respuesta).
     
-    \section{Aplicaciones que usan I2P}
-    %%% Completar (Wikipedia i2p) 
+ \subsection{Directorio centralizado}
+    Tor no es una red P2P distribuida pura, pues emplea una serie de servidores de confianza, establecidos por la propia red, que se encargan de mantener la base de datos en red. La IP de estos servidores es pública, y los nodos de la red deben pasar por ellos para establecer conexiones. Esto puede ser explotado de diferentes maneras por atacantes potenciales, e incluso puede ser utilizado para imponer \textbf{censura} en la red: basta con bloquear de forma global el acceso a dichas direcciones IP.
     
-    
+    \subsection{\textit{Outproxies}}
+   Tor está diseñada y optimizada para permitir el acceso a Internet a través de la red interna. Los nodos con salida a Internet se denominan \textit{exit nodes}, y suponen una vulnerabilidad añadida. Un atacante malicioso posicionado en un nodo de salida podría realizar lo que se conoce como \textit{eavesdropping} (escuchar a escondidas), para capturar el tráfico entre dicho nodo y el servidor de destino.\\
    
+   I2P también proporciona mecanismos de salida a Internet. Sin embargo, la atención se centra en comunicaciones dentro de la red, por lo que el número de nodos con salida a Internet es bastante más pequeño.
+   
+\section{Software I2P}
+Una vez tengamos configurado I2P en nuestro equipo, podremos conectarnos a la red y así aprovechar todo el software construido sobre ella que se encuentra disponible. Entre las diferentes aplicaciones, destacan:
+ 
+ \begin{itemize}
+ 	\item \textbf{Susimail:} Interfaz web simple para emails, centrada en la seguridad y el anonimato.
+ 	\item \textbf{Syndie:} Principal aplicación de distribución de contenidos diseñada para blogs, noticias y foros para I2P.
+ 	\item \textbf{I2P Messenger:} Cliente de mensajería instantánea con cifrado de extremo a extremo. Los mensajes no se almacenan en servidores para asegurar el anonimato.
+ 	\item Navegación web mediante webs anónimas.
+ 	\item Compartición de archivos mediante el uso de BitTorrent dentro de la red I2P.
+ 	\item También en Android$\dots$\\
+ 	\textbf{Nightweb}, aplicación que usa I2P y BitTorrent para compartir entradas de blogs, fotos y otros contenidos similares.
+ \end{itemize}
+    
 % -----------------------------------------------
 % Bibliografía.
 % -----------------------------------------------
