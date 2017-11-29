@@ -214,7 +214,7 @@ Se trata de una red superpuesta (\textit{overlay network}) basada en el intercam
 \begin{frame}{Invisible Internet Project}{Estructura}
 
 \begin{itemize}
-\item Un \textbf{nodo} es un ordenador conectado a I2P.
+\item Un \textbf{router} es un ordenador conectado a I2P. En general, nos referiremos a ellos también como \textbf{nodos} de la red.
 \item Un \textbf{túnel} es una secuencia de nodos que forman camino temporal, unidireccional y seguro por el que viajan los mensajes.
 \end{itemize}
 
@@ -225,12 +225,12 @@ Se trata de una red superpuesta (\textit{overlay network}) basada en el intercam
 
 \begin{frame}{Invisible Internet Project}{Funcionamiento}
 
-Cada cliente construye una serie de túneles de entrada (\textit{inbound}) y de salida (\textit{outbound}).
+Cada cliente construye una serie de túneles de entrada (\textit{inbound}) y de salida (\textit{outbound}). El primer nodo de un túnel se denomina \textit{gateway}.
 
 
 \begin{figure}
 	\centering
-	\includegraphics[width=.8\textwidth]{img/alice_bob_tunnel}
+	\includegraphics[width=.7\textwidth]{img/alice_bob_tunnel}
 \end{figure}
 
 Se elige la longitud del túnel para encontrar un equilibrio entre el anonimato, la latencia y el \textit{throughput}.
@@ -247,6 +247,16 @@ La base de datos en red está completamente distribuida. En cada instante, hay u
 \end{figure}
 
 Cuando se envía un mensaje, se buscan en la tabla los túneles de entrada del nodo destino (\textit{LeaseSet}).
+\end{frame}
+
+\begin{frame}{Invisible Internet Project}{netDB}
+	La información que se almacena en la tabla es la siguiente:
+	\vspace{1.5em}
+	
+	\begin{itemize}
+	\item \textbf{RouterInfo:} estructura que contiene información para contactar a un router concreto.
+	\item \textbf{LeaseSet:} información para establecer comunicación con un destino concreto (otro nodo, un servidor de correo, un sitio web$\dots$).
+\end{itemize}
 \end{frame}
 
 \begin{frame}{Invisible Internet Project}{Algoritmo Kademlia}
