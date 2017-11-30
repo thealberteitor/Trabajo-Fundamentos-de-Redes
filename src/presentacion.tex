@@ -303,12 +303,25 @@ Enrutamiento tipo garlic:
  \begin{itemize}
  	\item Comunicación de dos usuarios mediante túneles
  	\item La información viaja desde el primer nodo del túnel hasta el último
- 	\item El '\textit{gateway}' fragmenta mensajes I2P en mensajes de túnel
- 	\item En cada salto se envía: \{ID del túnel, IV, mensaje del túnel\}
+ 	\item El \textit{gateway} fragmenta mensajes I2P en mensajes de túnel
+ 	\item En cada salto se envía una tupla (mensaje del túnel)
  \end{itemize}
  
  
  \end{frame}
+ 
+ \begin{frame}{\textit{Garlic routing}}{Cifrado por capas}
+	Los mensajes del túnel están formados por:
+	
+	\vspace{1.5em}
+	\begin{itemize}
+	\item ID del túnel
+	\item Vector de inicialización (\textit{IV})
+	\item Instrucciones de envío/enrutamiento
+	\item Mensaje (encriptado) que se quiere enviar
+	\item Relleno
+\end{itemize}
+\end{frame}
  
  
  \begin{frame}{\textit{Garlic routing}}{Agregación de mensajes}
